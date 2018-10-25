@@ -1,0 +1,29 @@
+{{- if .Values.ingress.enabled -}}
+{{- $fullName := include "randomdistrib-build.fullname" . -}}
+{{- $ingressPath := .Values.ingress.path -}}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: ingress-backend
+  labels:
+    app.kubernetes.io/name: ingress-backend
+    helm.sh/chart: {{ include "randomdistrib-build.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+{{- with .Values.ingress.annotations }}
+  annotations:
+{{ toYaml . | indent 4 }}
+{{- end }}
+spec:
+  tls:
+    - hosts:
+        - "backend.coinflip.click"
+      secretName: backend-cert-prod
+  rules:
+    - host: "backend.coinflip.click"
+      http:
+        paths:
+          - backend:
+              serviceName: randomdistrib-backend
+              servicePort: http
+{{- end }}

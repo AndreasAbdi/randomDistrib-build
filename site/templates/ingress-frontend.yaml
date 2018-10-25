@@ -4,9 +4,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: {{ $fullName }}
+  name: ingress-frontend
   labels:
-    app.kubernetes.io/name: {{ include "randomdistrib-build.name" . }}
+    app.kubernetes.io/name: ingress-frontend
     helm.sh/chart: {{ include "randomdistrib-build.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
@@ -29,15 +29,7 @@ spec:
     - host: "coinflip.click"
       http:
         paths:
-          - path: /*
-            backend:
+          - backend:
               serviceName: randomdistrib-frontend
-              servicePort: http
-    - host: "backend.coinflip.click"
-      http:
-        paths:
-          - path: /*
-            backend:
-              serviceName: randomdistrib-backend
               servicePort: http
 {{- end }}

@@ -1,0 +1,17 @@
+apiVersion: certmanager.k8s.io/v1alpha1
+kind: Certificate
+metadata:
+  name: backend-cert-prod
+spec:
+  secretName: backend-cert-prod
+  dnsNames:
+  - backend.coinflip.click
+  acme:
+    config:
+    - http01:
+        ingressClass: nginx
+      domains:
+      - backend.coinflip.click
+  issuerRef:
+    name: letsencrypt-prod
+    kind: ClusterIssuer

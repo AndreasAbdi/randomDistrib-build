@@ -1,13 +1,5 @@
-# randomdistrib
+# Instructions
 
-Angular website for flipping coins.
+- Build the site cart.
 
-TL;DR
-
-```bash
-helm install ./
-```
-
-## Prerequisites
-
-- Kubernetes 1.10
+- Then build the certs (cert issuers, then certs)
