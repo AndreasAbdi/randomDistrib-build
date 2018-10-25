@@ -4,9 +4,9 @@
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
-  name: ingress-backend-test
+  name: ingress-backend
   labels:
-    app.kubernetes.io/name: ingress-backend-test
+    app.kubernetes.io/name: ingress-backend
     helm.sh/chart: {{ include "randomdistrib-build.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
@@ -15,6 +15,10 @@ metadata:
 {{ toYaml . | indent 4 }}
 {{- end }}
 spec:
+  tls:
+    - hosts:
+        - "backend.coinflip.click"
+      secretName: backend-cert-prod
   rules:
     - host: "backend.coinflip.click"
       http:

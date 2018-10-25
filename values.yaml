@@ -26,10 +26,10 @@ ingress:
   path: /
   hosts:
     - coinflip.click
-  tls: [] 
-    #- hosts:
-    #    - coinflip.click
-    #  secretName: staging-cert
+  tls:  
+    - hosts:
+        - coinflip.click
+      secretName: frontend-cert-prod
 
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
