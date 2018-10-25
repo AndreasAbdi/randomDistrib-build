@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: randomdistrib-frontend
-          image: "andreasabdi/randomdistrib:latest"
+          image: "andreasabdi/randomdistrib:0.0.1"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           ports:
             - name: http

@@ -26,13 +26,18 @@ spec:
   {{- end }}
 {{- end }}
   rules:
-  {{- range .Values.ingress.hosts }}
-    - host: {{ . | quote }}
+    - host: "coinflip.click"
       http:
         paths:
-          - path: {{ $ingressPath }}
+          - path: /*
+            backend:
+              serviceName: randomdistrib-frontend
+              servicePort: http
+    - host: "backend.coinflip.click"
+      http:
+        paths:
+          - path: /*
             backend:
               serviceName: randomdistrib-backend
               servicePort: http
-  {{- end }}
 {{- end }}
