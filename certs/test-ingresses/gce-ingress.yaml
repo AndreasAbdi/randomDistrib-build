@@ -1,0 +1,14 @@
+
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: test-gce-ingress
+  labels:
+    app.kubernetes.io/name: test-gce-ingress
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: randomdistrib-frontend
+              servicePort: http
