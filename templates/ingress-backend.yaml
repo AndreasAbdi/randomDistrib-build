@@ -1,13 +1,13 @@
 {{- if .Values.ingress.enabled -}}
-{{- $fullName := include "randomDistrib-build.fullname" . -}}
+{{- $fullName := include "randomdistrib-build.fullname" . -}}
 {{- $ingressPath := .Values.ingress.path -}}
 apiVersion: extensions/v1beta1
 kind: Ingress
 metadata:
   name: {{ $fullName }}
   labels:
-    app.kubernetes.io/name: {{ include "randomDistrib-build.name" . }}
-    helm.sh/chart: {{ include "randomDistrib-build.chart" . }}
+    app.kubernetes.io/name: {{ include "randomdistrib-build.name" . }}
+    helm.sh/chart: {{ include "randomdistrib-build.chart" . }}
     app.kubernetes.io/instance: {{ .Release.Name }}
     app.kubernetes.io/managed-by: {{ .Release.Service }}
 {{- with .Values.ingress.annotations }}
@@ -32,7 +32,7 @@ spec:
         paths:
           - path: {{ $ingressPath }}
             backend:
-              serviceName: {{ $fullName }}
+              serviceName: randomdistrib-backend
               servicePort: http
   {{- end }}
 {{- end }}

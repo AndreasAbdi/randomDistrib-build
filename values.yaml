@@ -1,4 +1,4 @@
-# Default values for randomDistrib-build.
+# Default values for randomdistrib-build.
 # This is a YAML-formatted file.
 # Declare variables to be passed into your templates.
 
@@ -17,13 +17,13 @@ service:
   port: 80
 
 ingress:
-  enabled: false
+  enabled: true
   annotations: {}
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   path: /
   hosts:
-    - chart-example.local
+    - coinflip.click
   tls: []
   #  - secretName: chart-example-tls
   #    hosts:
